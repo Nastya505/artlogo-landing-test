@@ -92,7 +92,7 @@ const modules = [Navigation, Pagination, Autoplay];
       <Swiper
         :modules="modules"
         :slides-per-view="1.1"
-        :space-between="10"
+        :space-between="16"
         :centered-slides="false"
         :slides-offset-before="12"
         :slides-offset-after="12"
