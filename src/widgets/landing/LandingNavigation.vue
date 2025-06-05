@@ -108,9 +108,8 @@ onMounted(() => {
       class="md:hidden fixed inset-0 bg-black z-50 flex flex-col transition-opacity duration-300 ease-out"
       :class="{ 'opacity-0 pointer-events-none': !isMenuOpen, 'opacity-100': isMenuOpen }"
     >
-      >
       <!-- Header в полноэкранном меню -->
-      <div class="flex justify-between items-center h-16 px-4 border-b border-gray-800">
+      <div class="flex justify-between items-center px-4 border-b border-gray-800">
         <!-- Кнопка закрытия -->
         <button
           class="text-white hover:text-gray-300 transition-colors duration-200"
