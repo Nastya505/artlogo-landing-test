@@ -133,7 +133,7 @@ function handleStartDesign() {
         <!-- Right side - Signature examples -->
         <div class="relative lg:pl-8 w-full lg:w-[45%]">
           <!-- First signature example -->
-          <div class="mb-4 -ml-48 2xl:-ml-56 lg:mb-8 transform rotate-1 lg:rotate-3">
+          <div class="mb-4 -ml-48 2xl:-ml-56 lg:mb-8">
             <img
               src="https://cdn.shopify.com/s/files/1/0594/4639/5086/files/artlogo-landing-signature-1.webp?v=1748964164"
               alt="Marvelous Investment Banker Signature"
@@ -142,7 +142,7 @@ function handleStartDesign() {
           </div>
 
           <!-- Second signature example -->
-          <div class="transform -rotate-1 lg:-rotate-2 ml-4 lg:ml-8">
+          <div class=" ml-4 lg:ml-8">
             <img
               src="https://cdn.shopify.com/s/files/1/0594/4639/5086/files/artlogo-landing-signature-2.webp?v=1748964150"
               alt="Steve Johnson Wine Consultant Signature"
