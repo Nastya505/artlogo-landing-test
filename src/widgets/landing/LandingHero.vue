@@ -74,7 +74,7 @@ function handleStartDesign() {
         <!-- Mobile Signature examples -->
         <div class="relative w-full mb-8">
           <!-- First signature example -->
-          <div class="mb-6 transform rotate-2">
+          <div class="mb-6">
             <img
               src="https://cdn.shopify.com/s/files/1/0594/4639/5086/files/artlogo-landing-signature-1.webp?v=1748964164"
               alt="Marvelous Investment Banker Signature"
@@ -83,7 +83,7 @@ function handleStartDesign() {
           </div>
 
           <!-- Second signature example -->
-          <div class="transform -rotate-1">
+          <div>
             <img
               src="https://cdn.shopify.com/s/files/1/0594/4639/5086/files/artlogo-landing-signature-2.webp?v=1748964150"
               alt="Steve Johnson Wine Consultant Signature"
