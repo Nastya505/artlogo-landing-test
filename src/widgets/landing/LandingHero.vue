@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppButton from '../../shared/components/AppButton.vue';
+import AppButton from '@/shared/components/AppButton.vue';
 
 interface Props {
   title?: string;
@@ -152,7 +152,6 @@ function handleStartDesign() {
         </div>
       </div>
 
-      <!-- Desktop Get Started Button -->
       <div class="hidden lg:flex justify-center w-full">
         <AppButton
           text="Get Started"
@@ -164,20 +163,3 @@ function handleStartDesign() {
     </div>
   </section>
 </template>
-
-<style scoped>
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.02);
-  }
-}
-
-.animate-pulse {
-  animation: pulse 3s ease-in-out infinite;
-}
-</style>

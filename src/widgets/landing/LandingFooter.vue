@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { PAY_METHODS } from '@/shared/config/landing';
+
 import { reactive } from 'vue';
 
 interface NewsletterForm {
@@ -7,19 +9,7 @@ interface NewsletterForm {
   isSuccess: boolean;
   error: string | null;
 }
-const payMethods = [
-  'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/payment_method-amex.png?v=1686768256',
-  'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/payment_method-apple_pay.png?v=1686768256',
-  'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/payment_method-diners_club.png?v=1686768536',
-  'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/payment_method-discover.png?v=1686768256',
-  'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/payment_method-google_pay.png?v=1686768256',
-  'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/payment_method-maestro.png?v=1686768256',
-  'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/payment_method-mastercard.png?v=1686768256',
-  'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/payment_method-paypal.png?v=1686768256',
-  'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/payment_method-shop_pay.png?v=1686768256',
-  'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/payment_method-unionpay.png?v=1686768257',
-  'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/payment_method-visa.png?v=1686768256',
-];
+
 // Newsletter form state
 const newsletterForm = reactive<NewsletterForm>({
   email: '',
@@ -114,7 +104,7 @@ async function handleNewsletterSubmit() {
         </h3>
         <div class="flex flex-wrap justify-center items-center gap-3 max-w-4xl mx-auto">
           <div
-            v-for="(payMethod, index) in payMethods"
+            v-for="(payMethod, index) in PAY_METHODS"
             :key="index"
             class="flex items-center justify-center transition-transform hover:scale-105"
           >

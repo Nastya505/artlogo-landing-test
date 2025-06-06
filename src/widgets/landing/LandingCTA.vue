@@ -16,24 +16,20 @@ withDefaults(defineProps<Props>(), {
 });
 
 function handleGetSignature() {
-  // Переход на страницу заказа
-  window.location.href = '/order';
+  window.location.href = '/signature-logo';
 }
 </script>
 
 <template>
   <section class="max-w-[1680px] mx-auto px-3 text-center">
-    <!-- Main Title -->
     <h2 class="text-[40px] lg:text-8xl font-bold text-white leading-tight ">
       {{ title }}
     </h2>
 
-    <!-- Subtitle with price -->
     <p class="text-white text-2xl lg:text-5xl leading-relaxed mt-5 mb-10 md:my-16">
       {{ subtitle }}
     </p>
 
-    <!-- CTA Button -->
     <AppButton
       :text="buttonText"
       variant="primary"

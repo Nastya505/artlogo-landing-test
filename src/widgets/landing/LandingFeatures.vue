@@ -19,7 +19,6 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <section class="max-w-5xl mx-auto px-3">
-    <!-- Header -->
     <div class="text-center mb-16">
       <h2 class="text-3xl md:text-5xl font-normal text-white mb-6">
         {{ title }}

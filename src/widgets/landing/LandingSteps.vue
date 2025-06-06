@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppButton from '../../shared/components/AppButton.vue';
+import AppButton from '@/shared/components/AppButton.vue';
 
 interface Step {
   id: number;
@@ -28,7 +28,7 @@ function handleButtonClick() {
   if (props.buttonAction) {
     props.buttonAction();
   } else {
-    navigateTo('/order');
+    navigateTo('/signature-logo');
   }
 }
 </script>

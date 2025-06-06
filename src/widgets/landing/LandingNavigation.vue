@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import AppButton from '../../shared/components/AppButton.vue';
+import AppButton from '@/shared/components/AppButton.vue';
 
 const isMenuOpen = ref(false);
 
+const navigationLinks = [
+  { href: '#reviews', text: 'Reviews' },
+  { href: '#examples', text: 'Examples' },
+];
+
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value;
-  // Блокируем скролл страницы когда меню открыто
   if (isMenuOpen.value) {
     document.body.style.overflow = 'hidden';
   } else {
@@ -20,11 +24,9 @@ function closeMenu() {
 
 function handleOrderClick() {
   closeMenu();
-  // Переход на страницу заказа
-  window.location.href = '/order';
+  window.location.href = '/signature-logo';
 }
 
-// Закрытие меню при изменении размера экрана
 onMounted(() => {
   const handleResize = () => {
     if (window.innerWidth >= 768) {
@@ -36,7 +38,6 @@ onMounted(() => {
 
   onUnmounted(() => {
     window.removeEventListener('resize', handleResize);
-    // Восстанавливаем скролл при размонтировании компонента
     document.body.style.overflow = 'auto';
   });
 });
@@ -44,27 +45,20 @@ onMounted(() => {
 
 <template>
   <nav class="fixed top-0 left-0 right-0 z-50 py-3">
-    <!-- Черный фон -->
     <div class="absolute inset-0 bg-black" />
-    <!-- Белый полупрозрачный слой -->
     <div class="absolute inset-0 bg-white/80 backdrop-blur-sm" />
 
-    <!-- Контент навигации -->
     <div class="relative max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center ">
+      <div class="flex justify-between items-center">
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8">
           <a
-            href="#reviews"
+            v-for="link in navigationLinks"
+            :key="link.href"
+            :href="link.href"
             class="text-black hover:text-orange-500 text-xl font-semibold transition-colors duration-200"
           >
-            Reviews
-          </a>
-          <a
-            href="#examples"
-            class="text-black hover:text-orange-500 text-xl font-semibold transition-colors duration-200"
-          >
-            Examples
+            {{ link.text }}
           </a>
         </div>
 
@@ -91,7 +85,6 @@ onMounted(() => {
           </NuxtLink>
         </div>
 
-        <!-- CTA Button -->
         <div class="md:order-3">
           <AppButton
             text="Get My Artlogo"
@@ -108,9 +101,7 @@ onMounted(() => {
       class="md:hidden fixed inset-0 bg-black z-50 flex flex-col transition-opacity duration-300 ease-out"
       :class="{ 'opacity-0 pointer-events-none': !isMenuOpen, 'opacity-100': isMenuOpen }"
     >
-      <!-- Header в полноэкранном меню -->
-      <div class="flex justify-between items-center px-4 border-b border-gray-800">
-        <!-- Кнопка закрытия -->
+      <div class="flex justify-between items-center h-16 px-4 border-b border-gray-800">
         <button
           class="text-white hover:text-gray-300 transition-colors duration-200"
           @click="closeMenu"
@@ -120,7 +111,6 @@ onMounted(() => {
           </svg>
         </button>
 
-        <!-- Логотип -->
         <div class="flex-1 text-center">
           <NuxtLink to="/" class="inline-block" @click="closeMenu">
             <img
@@ -131,33 +121,25 @@ onMounted(() => {
           </NuxtLink>
         </div>
 
-        <!-- Пустое место для симметрии -->
         <div class="w-6" />
       </div>
 
-      <!-- Меню навигации -->
       <div class="flex-1 flex flex-col justify-center items-center space-y-8">
         <a
-          href="#examples"
+          v-for="link in navigationLinks"
+          :key="link.href"
+          :href="link.href"
           class="text-white text-3xl font-semibold hover:text-orange-500 transition-colors duration-200"
           @click="closeMenu"
         >
-          Examples
-        </a>
-        <a
-          href="#reviews"
-          class="text-white text-3xl font-semibold hover:text-orange-500 transition-colors duration-200"
-          @click="closeMenu"
-        >
-          Reviews
+          {{ link.text }}
         </a>
 
-        <!-- CTA Button в меню -->
         <div class="mt-8">
           <AppButton
             text="Get My Artlogo"
             variant="secondary"
-            size="md"
+            size="lg"
             @click="handleOrderClick"
           />
         </div>

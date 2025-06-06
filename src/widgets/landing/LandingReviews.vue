@@ -1,50 +1,17 @@
 <script setup lang="ts">
+import { LANDING_REVIEWS } from '@/shared/config/landing';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-interface Review {
-  id: number;
-  name: string;
-  title: string;
-  rating: number;
-  date: string;
-  text: string;
-  image: string;
-}
-
-const reviews: Review[] = [
-  {
-    id: 1,
-    name: 'Federico Phelps Corasoli',
-    title: 'Business Owner',
-    rating: 5,
-    date: 'Apr 4, 2023',
-    text: 'I would like to express my sincere gratitude to Artlogo for creating the perfect and sleek logo for me. They worked quickly and with precision, ensuring that every detail was taken care of.\n\nFrom start to finish, Artlogo was professional and easy to work with. They took the time to understand my vision and provided valuable input to help bring it to life. Their expertise and attention to detail truly shone through in the final product.\n\nI am absolutely thrilled with my new logo and have received many compliments on it. It has added a professional and polished touch to my brand, and I couldn\'t be happier with the outcome.\n\nThank you, Artlogo, for your exceptional work and dedication. I would highly recommend their services to anyone looking for a high-quality and stunning logo design.',
-    image: 'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/artlogo-landing-review-1.webp?v=1749045282',
-  },
-  {
-    id: 2,
-    name: 'Jackson Wright',
-    title: 'Lawyer',
-    rating: 5,
-    date: 'Mar 15, 2023',
-    text: 'Outstanding service from Artlogo! The team delivered exactly what I was looking for - a professional signature that represents my brand perfectly.\n\nThe process was smooth and efficient. They understood my requirements from the first consultation and provided multiple options to choose from. The final result exceeded my expectations.\n\nI\'ve been using my new signature for all business communications and have received numerous positive comments from clients and colleagues. It has definitely enhanced my professional image.\n\nHighly recommend Artlogo for anyone looking to elevate their brand with a custom signature design.',
-    image: 'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/SignatureConcept09.webp?v=1741967575',
-  },
-];
-
-// Swiper configuration
 const modules = [Navigation, Pagination, Autoplay];
 </script>
 
 <template>
   <section class="max-w-[1680px] mx-auto px-3">
-    <!-- Header -->
     <div class="text-center space-y-10  mb-10 md:mb-16">
       <h2 class="text-3xl md:text-5xl font-normal text-white">
         3000+ Reviews by our Clients
@@ -96,13 +63,11 @@ const modules = [Navigation, Pagination, Autoplay];
           prevEl: '.review-prev',
         }"
         :loop="true"
-        class="reviews-swiper"
+        class="reviews-swiper [&_.swiper-button-next]:!hidden [&_.swiper-button-prev]:!hidden"
       >
-        <SwiperSlide v-for="review in reviews" :key="review.id">
+        <SwiperSlide v-for="review in LANDING_REVIEWS" :key="review.id">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start">
-            <!-- Left side: Image with signature -->
             <div class="relative">
-              <!-- Person image -->
               <div class="relative z-10 flex items-center justify-center">
                 <img
                   :src="review.image"
@@ -112,9 +77,7 @@ const modules = [Navigation, Pagination, Autoplay];
               </div>
             </div>
 
-            <!-- Right side: Review text -->
             <div class="bg-white rounded-2xl p-7 text-black">
-              <!-- Review header -->
               <div class="flex items-center mb-6">
                 <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
                   <span class="text-green-600 font-bold text-lg">{{ review.name.charAt(0) }}</span>
@@ -132,12 +95,10 @@ const modules = [Navigation, Pagination, Autoplay];
                 </div>
               </div>
 
-              <!-- Review title -->
               <h3 class="text-xl font-bold mb-2 text-green-600">
                 Perfection!
               </h3>
 
-              <!-- Review text -->
               <div class="text-gray-700 text-sm leading-tight space-y-1">
                 <p v-for="(paragraph, index) in review.text.split('\n\n')" :key="index">
                   {{ paragraph }}
@@ -151,7 +112,7 @@ const modules = [Navigation, Pagination, Autoplay];
       <!-- Custom navigation buttons -->
       <div class="flex justify-center items-center mt-8 space-x-4">
         <button
-          class="review-prev w-12 h-12 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
+          class="review-prev w-12 h-12 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-px hover:shadow-lg"
           aria-label="Previous slide"
         >
           <svg class="w-5 h-5 text-white group-hover:text-orange-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,7 +121,7 @@ const modules = [Navigation, Pagination, Autoplay];
         </button>
 
         <button
-          class="review-next w-12 h-12 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
+          class="review-next w-12 h-12 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-px hover:shadow-lg"
           aria-label="Next slide"
         >
           <svg class="w-5 h-5 text-white group-hover:text-orange-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -171,26 +132,3 @@ const modules = [Navigation, Pagination, Autoplay];
     </div>
   </section>
 </template>
-
-<style scoped>
-/* Hide default Swiper navigation */
-:deep(.swiper-button-next),
-:deep(.swiper-button-prev) {
-  display: none !important;
-}
-
-/* Custom review navigation styling */
-.review-prev:hover,
-.review-next:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .grid-cols-1.lg\\:grid-cols-2 {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
-</style>

@@ -71,7 +71,6 @@ const modules = [Navigation, Pagination, Autoplay];
 
 <template>
   <div class="max-w-fit  mx-auto space-y-5 lg:space-y-16">
-    <!-- Header -->
     <div class="text-center space-y-5 lg:space-y-10 px-3 max-w-[1680px] mx-auto ">
       <h2 class="text-3xl lg:text-5xl font-normal text-white  leading-tight hidden md:block">
         Multipurpose Artlogo Signature that represents you
@@ -83,7 +82,7 @@ const modules = [Navigation, Pagination, Autoplay];
         What's one of the first things clients see of you before they even speak to you? Your Logo. Your logo is that one thing people notice about you
       </p>
       <p class="text-gray-300 text-base lg:text-2xl  mx-auto leading-relaxed block md:hidden">
-        It’s the first impression you make—before you even say a word. A powerful logo instantly tells clients who you are and what you stand for
+        It's the first impression you make—before you even say a word. A powerful logo instantly tells clients who you are and what you stand for
       </p>
     </div>
 
@@ -118,10 +117,10 @@ const modules = [Navigation, Pagination, Autoplay];
             spaceBetween: 30,
           },
         }"
-        class="use-cases-swiper"
+        class="use-cases-swiper [&_.swiper-button-next]:!hidden [&_.swiper-button-prev]:!hidden [&_.swiper-wrapper]:!flex [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto [&_.swiper-slide]:!flex [&_.swiper-slide]:!items-stretch [&_.swiper-slide]:!pb-[5px]"
       >
         <SwiperSlide v-for="useCase in useCases" :key="useCase.id">
-          <div class="bg-white/20 rounded-3xl sm:rounded-[36px] p-2 overflow-hidden border border-white">
+          <div class="bg-white/20 rounded-3xl sm:rounded-[36px] p-2 overflow-hidden border border-white w-full flex flex-col">
             <div class="flex h-full space-x-4 md:space-x-10">
               <!-- Image section -->
               <div class="w-2/5 relative">
@@ -152,7 +151,7 @@ const modules = [Navigation, Pagination, Autoplay];
       <!-- Custom Navigation Buttons -->
       <div class="flex justify-center items-center mt-8 space-x-4">
         <button
-          class="custom-prev w-12 h-12 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
+          class="custom-prev w-12 h-12 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm shadow-md hover:-translate-y-px hover:shadow-lg active:translate-y-0"
           aria-label="Previous slide"
         >
           <svg class="w-5 h-5 text-white group-hover:text-orange-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -161,7 +160,7 @@ const modules = [Navigation, Pagination, Autoplay];
         </button>
 
         <button
-          class="custom-next w-12 h-12 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
+          class="custom-next w-12 h-12 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm shadow-md hover:-translate-y-px hover:shadow-lg active:translate-y-0"
           aria-label="Next slide"
         >
           <svg class="w-5 h-5 text-white group-hover:text-orange-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,47 +171,3 @@ const modules = [Navigation, Pagination, Autoplay];
     </div>
   </div>
 </template>
-
-<style scoped>
-/* Hide default Swiper navigation */
-:deep(.swiper-button-next),
-:deep(.swiper-button-prev) {
-  display: none !important;
-}
-
-/* Custom navigation buttons styling */
-.custom-prev,
-.custom-next {
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.custom-prev:hover,
-.custom-next:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.custom-prev:active,
-.custom-next:active {
-  transform: translateY(0);
-}
-
-.swiper-wrapper {
-  align-items: stretch !important;
-  display: flex !important;
-}
-
-.swiper-slide {
-  height: auto !important;
-  display: flex !important;
-  padding-bottom: 5px !important;
-  align-items: stretch !important;
-}
-
-.swiper-slide > div {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-</style>
