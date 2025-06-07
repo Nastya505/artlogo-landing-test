@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import AppButton from '@/shared/components/AppButton.vue';
+import { AppButton } from '@/shared/ui';
 
 interface Step {
   id: number;
   title: string;
   description: string;
-  image: string;
-  imageAlt: string;
+  media: string; // URL to image or video
+  mediaType: 'image' | 'video';
+  mediaAlt: string;
   imagePosition: 'left' | 'right';
+  videoPoster?: string; // Poster image for video
 }
 
 interface Props {
@@ -60,9 +62,26 @@ function handleButtonClick() {
           class="order-1"
           :class="step.imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2'"
         >
+          <!-- Video -->
+          <video
+            v-if="step.mediaType === 'video'"
+            :poster="step.videoPoster"
+            autoplay
+            muted
+            loop
+            playsinline
+            class="w-full max-h-[225px] sm:max-h-[500px] mx-auto rounded-2xl shadow-lg object-cover object-center"
+            loading="lazy"
+          >
+            <source :src="step.media" type="video/mp4">
+            <p class="text-white">Your browser doesn't support video playback.</p>
+          </video>
+
+          <!-- Image -->
           <img
-            :src="step.image"
-            :alt="step.imageAlt"
+            v-else
+            :src="step.media"
+            :alt="step.mediaAlt"
             class="w-full mx-auto rounded-2xl shadow-lg"
             loading="lazy"
           >

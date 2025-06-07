@@ -1,69 +1,11 @@
 <script setup lang="ts">
+import { SWIPER_SLIDES } from '@/shared/config/landing';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-interface UseCase {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-}
-
-const useCases: UseCase[] = [
-  {
-    id: 1,
-    title: 'Social media posts',
-    description: 'Use Artlogo Signature on Instagram, Facebook and Youtube posts, stories and videos to create an impressive brand image and attract more clients',
-    image: 'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/Social_media_posts.png?v=1684693435',
-  },
-  {
-    id: 2,
-    title: 'Email Signature',
-    description: 'Use Artlogo signature in your email footer. This will boost your personal brand everyday and increase your email replies and leads',
-    image: 'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/Email_signature.png?v=1684694043',
-  },
-  {
-    id: 3,
-    title: 'E-signature',
-    description: 'Impress the recipients of emails with a completely irresistible signature in one click. Yes, no more unnecessary actions.',
-    image: 'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/E-signature.png?v=1684694010',
-  },
-  {
-    id: 4,
-    title: 'Sign paper documents',
-    description: 'Are you still using the same signature you created as a teenager? It\'s time to upgrade to a professional Artlogo signature',
-    image: 'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/Sign_paper_documents_8a65c91b-f0f9-4335-a291-9d91bf5481cb.png?v=1684746873',
-  },
-  {
-    id: 5,
-    title: 'Social media profile',
-    description: 'Use your personalized Artlogo signature as a distinctive logo on your Facebook cover or Instagram profile, giving your online presence a professional',
-    image: 'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/Social_media_profile.png?v=1684693473',
-  },
-  {
-    id: 6,
-    title: 'Your Website',
-    description: 'A customized logo crafted by Artlogo signals professionalism and attention to detail, helping you create a memorable brand experience',
-    image: 'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/Your_Website.png?v=1684694111',
-  },
-  {
-    id: 7,
-    title: 'Business Cards',
-    description: 'Adding your Artlogo signature to your business cards creates a distinctive impression, making you memorable and setting you apart from competitors',
-    image: 'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/Business_Cards.png?v=1684693724',
-  },
-  {
-    id: 8,
-    title: 'Video Content',
-    description: 'Present your clients with beautifully branded merchandise featuring your personalized Artlogo signature',
-    image: 'https://cdn.shopify.com/s/files/1/0594/4639/5086/files/Video_Content.png?v=1684693523',
-  },
-];
 
 // Swiper configuration
 const modules = [Navigation, Pagination, Autoplay];
@@ -91,7 +33,7 @@ const modules = [Navigation, Pagination, Autoplay];
       <Swiper
         :modules="modules"
         :slides-per-view="1.1"
-        :space-between="16"
+        :space-between="12"
         :centered-slides="false"
         :slides-offset-before="12"
         :slides-offset-after="12"
@@ -119,8 +61,8 @@ const modules = [Navigation, Pagination, Autoplay];
         }"
         class="use-cases-swiper [&_.swiper-button-next]:!hidden [&_.swiper-button-prev]:!hidden [&_.swiper-wrapper]:!flex [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto [&_.swiper-slide]:!flex [&_.swiper-slide]:!items-stretch [&_.swiper-slide]:!pb-[5px]"
       >
-        <SwiperSlide v-for="useCase in useCases" :key="useCase.id">
-          <div class="bg-white/20 rounded-3xl sm:rounded-[36px] p-2 overflow-hidden border border-white w-full flex flex-col">
+        <SwiperSlide v-for="useCase in SWIPER_SLIDES" :key="useCase.id">
+          <div class="bg-white/20 rounded-xl sm:rounded-[36px] p-3 overflow-hidden border border-white w-full flex flex-col">
             <div class="flex h-full space-x-4 md:space-x-10">
               <!-- Image section -->
               <div class="w-2/5 relative">
@@ -151,21 +93,16 @@ const modules = [Navigation, Pagination, Autoplay];
       <!-- Custom Navigation Buttons -->
       <div class="flex justify-center items-center mt-8 space-x-4">
         <button
-          class="custom-prev w-12 h-12 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm shadow-md hover:-translate-y-px hover:shadow-lg active:translate-y-0"
+          class="custom-prev w-10 h-10 bg-transparent hover:bg-white border-4 border-white rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
           aria-label="Previous slide"
         >
-          <svg class="w-5 h-5 text-white group-hover:text-orange-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          </svg>
+          <svg height="24px" class="text-white mr-[2px] rotate-180 group-hover:text-orange-400 transition-colors duration-300" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="currentColor" d="M405.2,232.9L126.8,67.2c-3.4-2-6.9-3.2-10.9-3.2c-10.9,0-19.8,9-19.8,20H96v344h0.1c0,11,8.9,20,19.8,20  c4.1,0,7.5-1.4,11.2-3.4l278.1-165.5c6.6-5.5,10.8-13.8,10.8-23.1C416,246.7,411.8,238.5,405.2,232.9z" /></svg>
         </button>
-
         <button
-          class="custom-next w-12 h-12 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm shadow-md hover:-translate-y-px hover:shadow-lg active:translate-y-0"
+          class="custom-next w-10 h-10 bg-transparent hover:bg-white border-4 border-white rounded-full flex items-center justify-center transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
           aria-label="Next slide"
         >
-          <svg class="w-5 h-5 text-white group-hover:text-orange-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
+          <svg height="24px" class="text-white ml-[2px] group-hover:text-orange-400 transition-colors duration-300" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="currentColor" d="M405.2,232.9L126.8,67.2c-3.4-2-6.9-3.2-10.9-3.2c-10.9,0-19.8,9-19.8,20H96v344h0.1c0,11,8.9,20,19.8,20  c4.1,0,7.5-1.4,11.2-3.4l278.1-165.5c6.6-5.5,10.8-13.8,10.8-23.1C416,246.7,411.8,238.5,405.2,232.9z" /></svg>
         </button>
       </div>
     </div>

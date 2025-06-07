@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppButton from '@/shared/components/AppButton.vue';
+import { AppButton } from '@/shared/ui';
 
 interface Props {
   title?: string;
@@ -15,8 +15,8 @@ withDefaults(defineProps<Props>(), {
   price: '$39',
 });
 
-function handleGetSignature() {
-  window.location.href = '/signature-logo';
+function handleButtonClick() {
+  navigateTo('/signature-logo');
 }
 </script>
 
@@ -34,7 +34,7 @@ function handleGetSignature() {
       :text="buttonText"
       variant="primary"
       size="lg"
-      @click="handleGetSignature"
+      @click="handleButtonClick"
     />
   </section>
 </template>

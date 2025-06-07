@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import AppButton from '@/shared/components/AppButton.vue';
+import { AppButton } from '@/shared/ui';
 
 const isMenuOpen = ref(false);
 
 const navigationLinks = [
-  { href: '#reviews', text: 'Reviews' },
-  { href: '#examples', text: 'Examples' },
+  { href: '/#reviews', text: 'Reviews' },
+  { href: '/#examples', text: 'Examples' },
 ];
 
 function toggleMenu() {
@@ -24,7 +24,7 @@ function closeMenu() {
 
 function handleOrderClick() {
   closeMenu();
-  window.location.href = '/signature-logo';
+  navigateTo('/signature-logo');
 }
 
 onMounted(() => {
@@ -48,7 +48,7 @@ onMounted(() => {
     <div class="absolute inset-0 bg-black" />
     <div class="absolute inset-0 bg-white/80 backdrop-blur-sm" />
 
-    <div class="relative max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative w-full mx-auto px-3 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center">
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8">

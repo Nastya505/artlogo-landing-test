@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import AppButton from '@/shared/components/AppButton.vue';
-import AppInput from '@/shared/components/AppInput.vue';
+import { AppButton, AppInput } from '@/shared/ui';
 import { ref } from 'vue';
 
 withDefaults(defineProps<Props>(), {
@@ -25,6 +24,7 @@ function handleCreateLogo() {
       timestamp: Date.now(),
     };
     localStorage.setItem('artlogo-form-data', JSON.stringify(formData));
+    navigateTo('/signature-logo');
   }
 }
 </script>
@@ -52,6 +52,7 @@ function handleCreateLogo() {
 
           <AppInput
             v-model="taglineText"
+            text-align="left"
             label="Add a tagline (if you'd like)"
             placeholder="Enter your slogan (optional)"
           />
@@ -59,6 +60,7 @@ function handleCreateLogo() {
 
         <div class="text-center w-full">
           <AppButton
+            text-align="left"
             :text="buttonText"
             variant="primary"
             size="lg"

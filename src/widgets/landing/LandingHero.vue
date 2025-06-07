@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppButton from '@/shared/components/AppButton.vue';
+import { AppButton } from '@/shared/ui';
 
 interface Props {
   title?: string;
@@ -22,31 +22,24 @@ withDefaults(defineProps<Props>(), {
   ],
 });
 
-const emit = defineEmits<{
-  buttonClick: [];
-}>();
-
 function handleStartDesign() {
-  emit('buttonClick');
+  navigateTo('/signature-logo');
 }
 </script>
 
 <template>
   <section class="relative overflow-hidden">
     <!-- Background image -->
-    <div class="absolute w-[700px] lg:w-full h-auto right-0 top-0">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0594/4639/5086/files/artlogo-landing-bg.webp?v=1748964468"
-        alt="Background"
-        class="w-full h-full object-cover"
-      >
-    </div>
-
-    <div class="relative max-w-[1680px] flex-wrap mx-auto px-3 pt-20 lg:pt-32 lg:pb-32 pb-24 flex items-center">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0594/4639/5086/files/artlogo-landing-bg.webp?v=1748964468"
+      alt="Background"
+      class="absolute scale-[3] lg:scale-100 w-[1500px] lg:w-full h-auto -right-[130%] lg:-right-2/3 top-60 lg:-top-56"
+    >
+    <div class="relative max-w-[1680px] flex-wrap mx-auto px-3 pt-12 md:pt-20 lg:pt-32 lg:pb-32 pb-24 flex items-center">
       <img
         src="https://cdn.shopify.com/s/files/1/0594/4639/5086/files/artlogo-landing-decor-1.webp?v=1748963847"
         alt="Decorative elements"
-        class="absolute -top-5 lg:top-20 left-10 sm:left-16 w-full lg:w-1/2 h-[450px] lg:h-auto object-contain block"
+        class="absolute -top-10 sm:-top-5 lg:top-20 left-10 sm:left-16 w-full lg:w-1/2 h-[450px] lg:h-auto object-contain block"
       >
 
       <!-- Mobile Layout -->
@@ -142,7 +135,7 @@ function handleStartDesign() {
           </div>
 
           <!-- Second signature example -->
-          <div class=" ml-4 lg:ml-8">
+          <div class="ml-4 lg:ml-8">
             <img
               src="https://cdn.shopify.com/s/files/1/0594/4639/5086/files/artlogo-landing-signature-2.webp?v=1748964150"
               alt="Steve Johnson Wine Consultant Signature"

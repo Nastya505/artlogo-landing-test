@@ -4,6 +4,7 @@ interface Props {
   placeholder: string;
   modelValue: string;
   required?: boolean;
+  textAlign?: 'left' | 'center' | 'right';
 }
 
 defineProps<Props>();
@@ -14,7 +15,7 @@ defineEmits<{
 
 <template>
   <div class="w-full">
-    <label class="block text-white font-medium mb-3 text-left text-xl md:text-3xl">
+    <label class="block text-white font-medium mb-3 text-xl md:text-3xl" :class="{ 'text-left': textAlign === 'left', 'text-center': textAlign === 'center', 'text-right': textAlign === 'right' }">
       {{ label }}
     </label>
     <input

@@ -59,7 +59,7 @@ async function handleNewsletterSubmit() {
 
 <template>
   <footer class="mt-24">
-    <div class="max-w-[1680px] mx-auto px-3">
+    <div class="max-w-[1680px] mx-auto px-3 sm:px-6 lg:px-8">
       <!-- Main discount section -->
       <div class="text-center mb-12">
         <h2 class="text-2xl md:text-4xl font-medium md:font-bold text-white mb-8 tracking-wide">

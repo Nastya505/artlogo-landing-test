@@ -33,7 +33,7 @@ withDefaults(defineProps<Props>(), {
   ],
   buttonText: 'Get Yours Now',
   buttonAction: () => {
-    window.location.href = '/signature-logo';
+    navigateTo('/signature-logo');
   },
 });
 </script>
