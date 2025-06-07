@@ -53,7 +53,6 @@ const cartItemsNumber = computed(() => {
 </template>
 
 <style scoped lang="scss">
-// @use '@artlogo-design/vars';
 
 .cart-total {
   font-size: 1.5rem;
@@ -93,10 +92,5 @@ const cartItemsNumber = computed(() => {
     font-size: 0.75em;
     color: #919191;
   }
-
-  // @media (min-width: vars.$media-m-min) {
-  //   font-size: 2rem;
-  //   max-width: 45rem;
-  // }
 }
 </style>

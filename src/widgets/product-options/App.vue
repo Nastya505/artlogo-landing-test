@@ -6,8 +6,6 @@ import { useEventListener } from '@vueuse/core';
 
 import { ElSkeleton, ElSkeletonItem, ElTooltip } from 'element-plus';
 import { computed, defineAsyncComponent, watch } from 'vue';
-
-import { useCurrency } from './lib/currency-provider';
 import { useQueryParamsStore } from './lib/url-params.store';
 import { useOptionsStore } from './model/OptionsStore';
 
@@ -230,7 +228,6 @@ watch(
 </template>
 
 <style scoped lang="scss">
-// @use '@artlogo-design/vars';
 
 .product-options {
   &--with-padding {
@@ -292,38 +289,4 @@ watch(
     vertical-align: middle;
   }
 }
-
-// @media (min-width: vars.$media-s-min) {
-//   .product-options {
-//     &__header {
-//       font-size: 1.5rem;
-//     }
-
-//     &__currency-message {
-//       font-size: 0.8em;
-//     }
-//   }
-// }
-
-// @media (min-width: vars.$media-m-min) {
-//   .product-options {
-//     &__header {
-//       font-size: 1.8rem;
-//     }
-//   }
-// }
-
-// @media (min-width: vars.$media-l-min) {
-//   .product-options {
-//     &__container {
-//       > * + * {
-//         margin-top: 5rem;
-//       }
-//     }
-//   }
-
-  // .product-option {
-  //   font-size: 1.8rem;
-  // }
-// }
 </style>

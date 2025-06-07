@@ -2,7 +2,6 @@
 import type { OptionBase } from '../model/types';
 import { ElPopover, ElSwitch } from 'element-plus';
 
-// import { Price } from '@/entities/price';
 
 import { useOptionsStore } from '../model/OptionsStore';
 
@@ -31,13 +30,7 @@ const optionsStore = useOptionsStore();
     <h6 class="product-addon__title">
       {{ option.product_title }}
     </h6>
-    <!-- <Price
-      :price="option.product_price"
-      :compare-at-price="option.product_compare_at_price"
-      :format-money-options="{ appendCurrencyCode: false }"
-      mode="vertical"
-      class="product-addon__price"
-    /> -->
+
 
     <div class="product-addon__description-wrapper">
       <template v-if="option.product_description">
@@ -72,8 +65,6 @@ const optionsStore = useOptionsStore();
 </template>
 
 <style scoped lang="scss">
-// @use '@artlogo-design/vars';
-//
 .product-addon {
   display: grid;
   grid-template-columns: 20% 1fr auto;
@@ -105,7 +96,7 @@ const optionsStore = useOptionsStore();
 
   &__more-info-button {
     width: fit-content;
-    color: vars.$color--link-blue;
+    color: #000;
   }
 
   &__description {
@@ -140,46 +131,5 @@ const optionsStore = useOptionsStore();
     }
   }
 
-  // @media (min-width: vars.$media-m-min) {
-  //   grid-template-columns: 130px 1fr auto auto;
-  //   column-gap: 1em;
-  //   padding: 1.25em 0.5em;
-
-  //   &__title {
-  //     font-size: 1.3em;
-  //   }
-
-  //   &__description-wrapper {
-  //     grid-column-start: 2;
-  //     grid-row-start: 2;
-  //   }
-
-  //   &__description {
-  //     &--desktop {
-  //       display: block;
-  //     }
-  //   }
-
-  //   &__more-info-button {
-  //     display: none;
-  //   }
-
-  //   &__price {
-  //     font-size: 1em;
-  //   }
-
-  //   &__switch {
-  //     font-size: 0.7em;
-  //   }
-
-  //   &__price,
-  //   &__switch {
-  //     grid-row-start: span 2;
-  //   }
-  // }
-
-  // @media (min-width: vars.$media-l-min) {
-  //   font-size: 1.3rem;
-  // }
 }
 </style>
