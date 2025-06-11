@@ -7,9 +7,11 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "generate-npmrc": "npx npmrc-replace-env --without-prefix=true"
   },
   "dependencies": {
+    "@artlogo-co/ui-kit": "^0.10.2",
     "@pinia/nuxt": "^0.11.1",
     "@vueuse/core": "^13.3.0",
     "element-plus": "^2.10.1",

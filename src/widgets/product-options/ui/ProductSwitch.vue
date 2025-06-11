@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import type { OptionBase } from '../model/types';
 import { ElPopover, ElSwitch } from 'element-plus';
-
-
 import { useOptionsStore } from '../model/OptionsStore';
 
 export interface ProductSwitchOption extends OptionBase {
   type: 'product_switch';
-  product_variant_id: number;
-  product_title: string;
+  product_variant_id?: number;
+  product_label: string;
   product_description: string;
   product_image: string;
   product_price: number;
@@ -17,31 +15,29 @@ export interface ProductSwitchOption extends OptionBase {
 }
 
 defineProps<{ option: ProductSwitchOption }>();
-
 const optionsStore = useOptionsStore();
 </script>
 
 <template>
-  <div
-    class="product-addon"
-    :style="option.show_background_color ? { backgroundColor: option.background_color } : {}"
-  >
-    <img :src="option.product_image" alt="" class="product-addon__image" width="160" height="160">
-    <h6 class="product-addon__title">
-      {{ option.product_title }}
-    </h6>
-
-
-    <div class="product-addon__description-wrapper">
-      <template v-if="option.product_description">
-        <div
-          class="rte product-addon__description product-addon__description--desktop"
-          v-html="option.product_description"
-        />
-        <div>
+  <section class="gap-8 flex justify-between items-center mt-10">
+    <div
+      class="flex items-start gap-4 md:gap-10 text-white shadow-lg"
+    >
+      <img :src="option.product_image" alt="addon-image" class="w-20 sm:w-32 h-20 sm:h-32 object-cover rounded-xl bg-white flex-shrink-0 mx-auto md:mx-0">
+      <div class="flex-1 max-w-full md:max-w-5xl">
+        <div class="text-base w-full lg:text-3xl text-white font-bold mb-1 leading-snug">
+          {{ option.product_label }}
+        </div>
+        <div class=" hidden sm:block text-base lg:text-2xl text-white font-normal leading-snug">
+          {{ option.product_description }}
+        </div>
+        <div class="sm:hidden block">
           <ElPopover trigger="click" effect="dark" popper-style="min-width: 200px;">
             <template #reference>
-              <button class="vuc-link-button vuc-link-button--underline-always product-addon__more-info-button">
+              <button
+                type="button"
+                class="bg-transparent border-none text-blue-500 text-sm font-normal underline underline-offset-4 decoration-2 transition-colors duration-300 hover:text-blue-200 focus:text-blue-100 p-0 m-0 cursor-pointer"
+              >
                 More Info
               </button>
             </template>
@@ -51,66 +47,30 @@ const optionsStore = useOptionsStore();
             />
           </ElPopover>
         </div>
-      </template>
+      </div>
     </div>
-
-    <ElSwitch
-      v-model="optionsStore.mainProduct.customParams[option.cart_label]"
-      class="product-addon__switch"
-      active-value="true"
-      inactive-value="false"
-      style="--el-switch-on-color: #76d472; --el-switch-off-color: #d9dadc"
-    />
-  </div>
+    <div class="flex flex-col lg:flex-row items-center justify-end gap-3 lg:gap-8 md:ml-4 ml-auto">
+      <div class="flex flex-col items-center justify-center">
+        <div v-if="option.product_compare_at_price && option.product_compare_at_price > option.product_price" class="text-gray-400 text-sm md:text-base lg:text-2xl line-through text-right">
+          ${{ (option.product_compare_at_price / 100).toFixed(2) }}
+        </div>
+        <div class="text-white text-lg md:text-2xl lg:text-4xl font-semibold text-right ">
+          +${{ (option.product_price / 100).toFixed(2) }}
+        </div>
+      </div>
+      <ElSwitch
+        v-model="optionsStore.mainProduct.customParams[option.cart_label]"
+        class="product-switch__switch"
+        active-value="true"
+        inactive-value="false"
+        style="--el-switch-on-color: #76d472; --el-switch-off-color: #d9dadc"
+      />
+    </div>
+  </section>
 </template>
 
 <style scoped lang="scss">
-.product-addon {
-  display: grid;
-  grid-template-columns: 20% 1fr auto;
-  grid-template-rows: auto 1fr;
-  font-size: 1rem;
-  row-gap: 0.5em;
-  column-gap: 0.5em;
-  padding: 0.625em 0.5em;
-
-  & + & {
-    margin-top: 0;
-  }
-
-  &__image {
-    width: 100%;
-    grid-row-start: span 2;
-  }
-
-  &__title {
-    font-size: 1.125em;
-    margin: 0;
-    height: fit-content;
-  }
-
-  &__price {
-    text-align: center;
-    font-size: 1.125em;
-  }
-
-  &__more-info-button {
-    width: fit-content;
-    color: #000;
-  }
-
-  &__description {
-    &--in-popper {
-      text-align: center;
-      font-size: 1rem;
-    }
-
-    &--desktop {
-      display: none;
-    }
-  }
-
-  &__switch {
+  .product-switch__switch {
     height: fit-content;
     font-size: 0.8em;
 
@@ -129,7 +89,5 @@ const optionsStore = useOptionsStore();
     &.is-checked :deep(.el-switch__core .el-switch__action) {
       left: calc(100% - 2.6em);
     }
-  }
-
-}
+    }
 </style>

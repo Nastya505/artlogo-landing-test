@@ -28,12 +28,12 @@ export const useOptionsStore = defineStore('productOptions', () => {
     quantity: 1,
   });
 
-  // Initialize section data
   async function initializeSection() {
     try {
       // Dynamic import to avoid circular dependency
       const { getProductData } = await import('../lib/product-data-provider');
       const section = getProductData();
+
       section.optionsSet.forEach((option: ProductOption) => {
         if (!option.cart_label && option.type !== 'condition' && option.type !== 'cart_total') {
           // add cart_label if it's not set
@@ -117,24 +117,13 @@ export const useOptionsStore = defineStore('productOptions', () => {
       return { price: mainProduct.value.price, compare_at_price: mainProduct.value.compareAtPrice };
     }
 
-    try {
-      // Calculate total using artlogo pricing logic
-      const _artistLevel = mainProduct.value.customParams.artist_level || sectionData.value.product.variants[0]?.title;
-      const additionalServices = (mainProduct.value.customParams.additional_services as unknown as string[]) || [];
+    // Суммируем цену основного продукта и всех выбранных аддонов
+    const addonsPrice = addonsToAddToCart.value.reduce((sum, addon) => sum + (addon.price * addon.quantity), 0);
 
-      // Note: This is synchronous calculation, will need async refactor for dynamic imports
-      // For now, return basic calculation
-      const basePrice = mainProduct.value.price;
-      const extraPrice = additionalServices.length * 1500; // Rough estimate
-
-      return {
-        price: basePrice + extraPrice,
-        compare_at_price: mainProduct.value.compareAtPrice + extraPrice,
-      };
-    } catch (error) {
-      console.warn('Cannot calculate cart total, using base price:', error);
-      return { price: mainProduct.value.price, compare_at_price: mainProduct.value.compareAtPrice };
-    }
+    return {
+      price: mainProduct.value.price + addonsPrice,
+      compare_at_price: mainProduct.value.compareAtPrice + addonsPrice,
+    };
   });
 
   const lineItems = computed<ProductVariantToAddToCart[]>(() => {

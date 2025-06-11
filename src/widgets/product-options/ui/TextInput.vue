@@ -20,7 +20,6 @@ export interface LargeTextInputOption extends OptionBase {
 const props = defineProps<{
   option: LargeTextInputOption | TextInputOption;
 }>();
-
 const optionsStore = useOptionsStore();
 
 function onTextInput(event: Event) {
@@ -31,7 +30,9 @@ function onTextInput(event: Event) {
       target.value = target.value.slice(0, props.option.character_limit);
     }
   }
-  optionsStore.mainProduct.customParams[props.option.cart_label] = target.value;
+
+  const key = props.option.cart_label;
+  optionsStore.mainProduct.customParams[key] = target.value;
 }
 
 const inputAttrs = computed<InputHTMLAttributes | TextareaHTMLAttributes | undefined>(() => {
@@ -53,10 +54,11 @@ const inputAttrs = computed<InputHTMLAttributes | TextareaHTMLAttributes | undef
     <component
       :is="option.type === 'text_input' ? 'input' : 'textarea'"
       v-model="optionsStore.mainProduct.customParams[option.cart_label]"
+      :value="optionsStore.mainProduct.customParams[option.cart_label] === 'undefined' ? '' : optionsStore.mainProduct.customParams[option.cart_label]"
       :placeholder="option.placeholder_text"
       class="w-full p-5 bg-white/20 border border-white rounded-lg text-white placeholder-white/50 focus:border-blue-500 focus:outline-none text-base md:text-lg transition-colors duration-300" :class="[
         {
-          'resize-none overflow-y-auto h-36': option.type === 'large_text_input',
+          'resize-none overflow-y-auto min-h-72 text-base lg:!text-3xl': option.type === 'large_text_input',
         },
       ]"
       v-bind="inputAttrs"

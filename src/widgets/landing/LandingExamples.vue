@@ -1,14 +1,6 @@
 <script setup lang="ts">
 import { AppButton, AppInput } from '@/shared/ui';
-import { ref } from 'vue';
-
-withDefaults(defineProps<Props>(), {
-  title: 'Create Your Signature Logo',
-  subtitle: 'Make your unique signature, signature logo and watermark. Sign your documents, brand your content and name with the unique logo handwritten by a professional calligrapher.',
-  buttonText: 'Create Artlogo',
-});
-const signatureText = ref('');
-const taglineText = ref('');
+import { onMounted, ref } from 'vue';
 
 interface Props {
   title?: string;
@@ -16,14 +8,34 @@ interface Props {
   buttonText?: string;
 }
 
+withDefaults(defineProps<Props>(), {
+  title: 'Create Your Signature Logo',
+  subtitle: 'Make your unique signature, signature logo and watermark. Sign your documents, brand your content and name with the unique logo handwritten by a professional calligrapher.',
+  buttonText: 'Create Artlogo',
+});
+
+const signatureText = ref('');
+const taglineText = ref('');
+
+onMounted(() => {
+  const savedData = localStorage.getItem('signatureData');
+  if (savedData) {
+    try {
+      const parsedData = JSON.parse(savedData);
+      signatureText.value = parsedData.signature_name || '';
+      taglineText.value = parsedData.special_instructions || '';
+    } catch (e) {
+      console.error('Error parsing localStorage data:', e);
+    }
+  }
+});
 function handleCreateLogo() {
   if (signatureText.value || taglineText.value) {
     const formData = {
-      signatureText: signatureText.value,
-      taglineText: taglineText.value,
-      timestamp: Date.now(),
+      signature_name: signatureText.value,
+      special_instructions: taglineText.value,
     };
-    localStorage.setItem('artlogo-form-data', JSON.stringify(formData));
+    localStorage.setItem('signatureData', JSON.stringify(formData));
     navigateTo('/signature-logo');
   }
 }

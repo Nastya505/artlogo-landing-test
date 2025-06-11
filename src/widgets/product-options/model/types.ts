@@ -1,12 +1,12 @@
 import type { CartTotalOption } from '../ui/CartTotal.vue';
-import type { CheckboxesOption } from '../ui/Checkboxes.vue';
-import type { FileUploaderOption } from '../ui/FileUploaderOption.vue';
 import type { PaymentButtonsOption } from '../ui/PaymentButtons/PaymentButtons.vue';
 import type { PaymentTrustsOption } from '../ui/PaymentTrusts.vue';
+import type { RadioOption } from '../ui/PricingRadio.vue';
 import type { ProductSwitchOption } from '../ui/ProductSwitch.vue';
-import type { RadioOption } from '../ui/Radio.vue';
 import type { SwatchesOption } from '../ui/Swatches.vue';
 import type { LargeTextInputOption, TextInputOption } from '../ui/TextInput.vue';
+import type { UploadWithCommentOption } from '../ui/UploadWithComment.vue';
+import type { VariantSelectorOption } from '../ui/VariantSelector.vue';
 import { z } from 'zod';
 
 export const validationSchemas = {
@@ -48,16 +48,16 @@ export interface ProductVariantToAddToCart {
 
 export type ProductOption =
   | RadioOption
-  | CheckboxesOption
   | SwatchesOption
   | ConditionOption
   | TextInputOption
   | LargeTextInputOption
-  | FileUploaderOption
+  | UploadWithCommentOption
   | ProductSwitchOption
   | CartTotalOption
   | PaymentButtonsOption
-  | PaymentTrustsOption;
+  | PaymentTrustsOption
+  | VariantSelectorOption;
 
 export interface ProductOptionsSection {
   product: any;

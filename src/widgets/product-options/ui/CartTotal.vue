@@ -1,11 +1,6 @@
 <script setup lang="ts">
-// import type { FormatMoneyOptions } from '@/shared/lib/money';
-
 import type { OptionBase } from '../model/types';
-
-// import { Price } from '@/entities/price';
 import { sum } from 'lodash-es';
-
 import { computed } from 'vue';
 import { useOptionsStore } from '../model/OptionsStore';
 
@@ -15,82 +10,29 @@ export interface CartTotalOption extends OptionBase {
 
 const optionsStore = useOptionsStore();
 
-// const formatMoneyOptions: Partial<FormatMoneyOptions> = {
-//   appendCurrencyCode: false,
-// };
-
 const cartItemsNumber = computed(() => {
   return optionsStore.mainProduct.quantity + sum(optionsStore.addonsToAddToCart.map(variant => variant.quantity));
 });
 </script>
 
 <template>
-  <div class="cart-total">
-    <div
-      v-if="optionsStore.cartTotal.compare_at_price > optionsStore.cartTotal.price"
-      class="cart-total__block cart-total__block--compare-at-price"
-    >
-      <span>Total</span>
-      <!-- <Price
-        :compare-at-price="optionsStore.cartTotal.compare_at_price"
-        prepend-currency-code
-        :format-money-options="formatMoneyOptions"
-      /> -->
+  <section>
+    <div class="flex justify-between flex-wrap items-start font-bold mb-2 border-t-2  border-white border-solid text-white pt-10 lg:pt-16">
+      <span class="flex items-center text-white text-2xl lg:text-4xl font-normal">
+        <b class="mr-2">Total</b>({{ cartItemsNumber }} item{{ cartItemsNumber > 1 ? 's' : '' }})</span>
+      <div class="flex items-center justify-end flex-col gap-2">
+        <div v-if="optionsStore.cartTotal.compare_at_price > optionsStore.cartTotal.price" class="flex font-semibold  items-center text-gray-400">
+          <span class="mr-2 text-sm lg:text-base">USD</span>
+          <span class="line-through text-base lg:text-2xl">${{ optionsStore.cartTotal.compare_at_price / 100 }}</span>
+        </div>
+        <div class="flex items-center">
+          <span class="text-white mr-2 text-base font-bold">USD</span>
+          <span class="text-white text-2xl lg:text-4xl font-semibold">${{ optionsStore.cartTotal.price / 100 }}</span>
+        </div>
+      </div>
     </div>
-    <div class="cart-total__block cart-total__block--final-price">
-      <span>Total ({{ cartItemsNumber }} item{{ cartItemsNumber > 1 ? 's' : '' }})</span>909909
-      <!-- <Price
-        :price="optionsStore.cartTotal.price"
-        prepend-currency-code
-        :format-money-options="formatMoneyOptions"
-        class="cart-total__final-price"
-      /> -->
+    <div class="text-base lg:text-2xl text-[#919191]">
+      Tax and all costs included. Shipping via email
     </div>
-    <div class="cart-total__message">
-      Taxes and all expenses are included.
-    </div>
-  </div>
+  </section>
 </template>
-
-<style scoped lang="scss">
-
-.cart-total {
-  font-size: 1.5rem;
-  line-height: 1.5;
-  margin-left: auto;
-  margin-right: auto;
-
-  > * + * {
-    margin-top: 0.5em;
-  }
-
-  &__block {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-
-    > * + * {
-      margin-left: 0.5em;
-    }
-
-    &--compare-at-price {
-      font-size: 0.8em;
-    }
-
-    &--final-price {
-      font-weight: bold;
-    }
-  }
-
-  &__final-price {
-    flex-grow: 1;
-    justify-content: flex-end;
-  }
-
-  &__message {
-    font-size: 0.75em;
-    color: #919191;
-  }
-}
-</style>

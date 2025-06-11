@@ -41,7 +41,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   srcDir: 'src',
   
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/main.css', 'element-plus/dist/index.css'],
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',

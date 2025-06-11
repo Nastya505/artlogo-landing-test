@@ -4,7 +4,7 @@ import type { OptionBase } from '../model/types';
 import { useMediaQuery } from '@vueuse/core';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { ref } from 'vue';
+import { nextTick, ref, watch } from 'vue';
 import { useOptionsStore } from '../model/OptionsStore';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -24,6 +24,7 @@ defineProps<{ option: RadioOption }>();
 const optionsStore = useOptionsStore();
 const isDesktop = useMediaQuery('(min-width: 1023px)');
 const swiperRef = ref<SwiperType | null>(null);
+
 interface PlanDetails {
   name: string;
   price: number;
@@ -45,8 +46,8 @@ function getPlanDetails(optionValue: string): PlanDetails {
   const plans: Record<string, PlanDetails> = {
     'Calligrapher': {
       name: 'Basic',
-      price: 39,
-      originalPrice: 59.95,
+      price: 3900,
+      originalPrice: 5995,
       title: 'Standard Calligrapher',
       concepts: '1x',
       revisions: '2 revisions rounds',
@@ -57,8 +58,8 @@ function getPlanDetails(optionValue: string): PlanDetails {
     },
     'Top Level Calligrapher': {
       name: 'Most Popular',
-      price: 59,
-      originalPrice: 89.95,
+      price: 5900,
+      originalPrice: 8995,
       title: 'Top Level Calligrapher',
       concepts: '3x',
       revisions: '5 revision rounds',
@@ -70,8 +71,8 @@ function getPlanDetails(optionValue: string): PlanDetails {
     },
     'Head Calligrapher': {
       name: 'Premium',
-      price: 79,
-      originalPrice: 109.95,
+      price: 7900,
+      originalPrice: 10995,
       title: 'Head Calligrapher',
       concepts: '5x',
       revisions: 'Unlimited revisions',
@@ -86,8 +87,8 @@ function getPlanDetails(optionValue: string): PlanDetails {
 
   return plans[optionValue] || {
     name: 'Custom',
-    price: 39,
-    originalPrice: 59.95,
+    price: 3900,
+    originalPrice: 5995,
     title: optionValue,
     concepts: '1x',
     revisions: '2 revisions',
@@ -141,7 +142,7 @@ function getPlanDetails(optionValue: string): PlanDetails {
           <div
             class="transition-all duration-300 relative border-2 rounded-3xl bg-transparent p-8 h-full flex flex-col justify-between text-left items-start hover:border-blue-500 hover:bg-blue/5"
             :class="{
-              'border-blue-500 bg-blue/10': optionsStore.mainProduct.customParams[option.cart_label] === optionValue,
+              'border-blue-500 bg-blue-500/10': optionsStore.mainProduct.customParams[option.cart_label] === optionValue,
               'border-white': optionsStore.mainProduct.customParams[option.cart_label] !== optionValue,
             }"
           >

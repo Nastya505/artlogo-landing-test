@@ -3,6 +3,16 @@ import { PAY_METHODS } from '@/shared/config/landing';
 
 import { reactive } from 'vue';
 
+interface Props {
+  isShowSubscribe?: boolean;
+  isShowPaymentMethods?: boolean;
+}
+
+withDefaults(defineProps<Props>(), {
+  isShowSubscribe: true,
+  isShowPaymentMethods: true,
+});
+
 interface NewsletterForm {
   email: string;
   isSubmitting: boolean;
@@ -61,7 +71,7 @@ async function handleNewsletterSubmit() {
   <footer class="mt-24">
     <div class="max-w-[1680px] mx-auto px-3 sm:px-6 lg:px-8">
       <!-- Main discount section -->
-      <div class="text-center mb-12">
+      <div v-if="isShowSubscribe" class="text-center mb-12">
         <h2 class="text-2xl md:text-4xl font-medium md:font-bold text-white mb-8 tracking-wide">
           GET 10% DISCOUNT ON YOUR FIRST PURCHASE
         </h2>
@@ -98,7 +108,7 @@ async function handleNewsletterSubmit() {
       </div>
 
       <!-- Payment Methods Section -->
-      <div class="text-center mb-8">
+      <div v-if="isShowPaymentMethods" class="text-center mb-8">
         <h3 class="text-white/70 text-sm mb-4 uppercase tracking-wider">
           Payment Methods
         </h3>
