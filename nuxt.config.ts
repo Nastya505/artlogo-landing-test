@@ -42,6 +42,16 @@ export default defineNuxtConfig({
   srcDir: 'src',
   
   css: ['~/assets/css/main.css', 'element-plus/dist/index.css'],
+  vite: {
+    css: {
+      devSourcemap: true,
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@artlogo-co/ui-kit/scss/element-plus-theme.scss" as *;',
+        },
+      },
+    },
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
