@@ -3,8 +3,8 @@ import { useOptionsStore } from '../model/OptionsStore';
 import TextInput from './TextInput.vue';
 
 const props = defineProps<{
-  fileCartLabel: string; // cart_label для файла
-  textCartLabel: string; // cart_label для текста
+  fileCartLabel?: string; 
+  textCartLabel: string; 
   accept?: string;
   textareaLabel?: string;
 }>();
@@ -37,15 +37,15 @@ const optionsStore = useOptionsStore();
         />
       </div>
       <!-- FileUploader -->
-      <div class="w-full md:w-80 flex flex-col items-center justify-center">
+      <!-- <div class="w-full md:w-80 flex flex-col items-center justify-center">
         <div v-if="optionsStore.mainProduct.customParams[props.fileCartLabel]" class="flex items-center w-full justify-center">
           <img
             :src="optionsStore.mainProduct.customParams[props.fileCartLabel]"
             alt="Uploaded Image"
             class="max-w-full max-h-96 object-cover mb-5 md:mb-0 rounded-lg"
           >
-        </div>
-        <div class="fileuploader__wrapper w-full md:w-80 flex flex-col  text-white items-center justify-center">
+        </div> -->
+        <!-- <div class="fileuploader__wrapper w-full md:w-80 flex flex-col  text-white items-center justify-center"> -->
           <!-- <FileUploader
             v-model="(optionsStore.mainProduct.customParams[props.fileCartLabel] as string)"
             :labels="{ main: 'Choose file' }"
@@ -53,8 +53,8 @@ const optionsStore = useOptionsStore();
             display-mode="advanced"
             image-editor
           /> -->
-        </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div> -->
     </div>
   </div>
 </template>

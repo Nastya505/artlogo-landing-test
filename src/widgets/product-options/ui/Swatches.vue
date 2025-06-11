@@ -79,7 +79,7 @@ const selectedValues = computed(() => {
 </script>
 
 <template>
-  <div class="flex justify-center flex-wrap -mt-4">
+  <div class="flex justify-center flex-wrap">
     <h2 class="text-3xl text-center md:text-5xl font-normal text-white mb-5 md:mb-10 leading-tight">
       Select up to 4 logo styles you like (click to choose)
     </h2>

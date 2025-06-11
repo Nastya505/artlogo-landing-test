@@ -180,7 +180,7 @@ watch(
 </script>
 
 <template>
-  <div class="max-w-[1680px] mx-auto px-3 sm:px-6 lg:px-8">
+  <div class="max-w-[1680px] mx-auto px-3 sm:px-6 lg:px-8 space-y-16 lg:space-y-32">
     <template v-for="option in optionsStore.section.optionsSet" :key="option.cart_label">
       <CartTotal v-if="option.type === 'cart_total'" class="mt-20 md:mt-40" />
       <PaymentTrusts v-else-if="option.type === 'payment_trusts'" />
@@ -198,19 +198,17 @@ watch(
         :style="option.show_background_color ? { backgroundColor: option.background_color } : {}"
         :data-cart-label="option.cart_label"
       >
-        <h5 v-if="option.product_label" class="block text-white text-center font-medium  mt-10 md:mt-16 m-5 md:mb-10 text-xl md:text-3xl">
+        <h5 v-if="option.product_label" class="block text-white text-center font-medium   m-5 md:mb-10 text-xl md:text-3xl">
           {{ option.product_label }}
         </h5>
 
         <Suspense :timeout="500">
-          <Swatches v-if="option.type === 'swatches'" class=" mt-20 md:mt-40" :option="option" />
+          <Swatches v-if="option.type === 'swatches'"  :option="option" />
           <TextInput v-else-if="option.type === 'text_input'" class="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8" :option="option" />
-          <!-- <UploadWithComment
+          <UploadWithComment
             v-else-if="option.type === 'file_uploader' || option.type === 'large_text_input'"
-            class="my-20 md:my-40"
-            file-cart-label="reference_file"
             text-cart-label="reference_comment"
-          /> -->
+          />
           <VariantSelector v-else-if="option.type === 'variant_selector'" :option="option" />
 
           <template #fallback>
