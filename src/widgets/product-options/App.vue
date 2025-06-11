@@ -205,12 +205,12 @@ watch(
         <Suspense :timeout="500">
           <Swatches v-if="option.type === 'swatches'" class=" mt-20 md:mt-40" :option="option" />
           <TextInput v-else-if="option.type === 'text_input'" class="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8" :option="option" />
-          <UploadWithComment
+          <!-- <UploadWithComment
             v-else-if="option.type === 'file_uploader' || option.type === 'large_text_input'"
             class="my-20 md:my-40"
             file-cart-label="reference_file"
             text-cart-label="reference_comment"
-          />
+          /> -->
           <VariantSelector v-else-if="option.type === 'variant_selector'" :option="option" />
 
           <template #fallback>

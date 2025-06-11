@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { FileUploader } from '@artlogo-co/ui-kit';
 import { useOptionsStore } from '../model/OptionsStore';
 import TextInput from './TextInput.vue';
 
@@ -47,13 +46,13 @@ const optionsStore = useOptionsStore();
           >
         </div>
         <div class="fileuploader__wrapper w-full md:w-80 flex flex-col  text-white items-center justify-center">
-          <FileUploader
+          <!-- <FileUploader
             v-model="(optionsStore.mainProduct.customParams[props.fileCartLabel] as string)"
             :labels="{ main: 'Choose file' }"
             accept="image/jpeg, image/png, image/jpg, image/webp, image/svg"
             display-mode="advanced"
             image-editor
-          />
+          /> -->
         </div>
       </div>
     </div>
