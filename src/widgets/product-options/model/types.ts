@@ -1,11 +1,10 @@
 import type { CartTotalOption } from '../ui/CartTotal.vue';
+import type { FileUploaderOption } from '../ui/FileUploaderOption.vue';
 import type { PaymentButtonsOption } from '../ui/PaymentButtons/PaymentButtons.vue';
 import type { PaymentTrustsOption } from '../ui/PaymentTrusts.vue';
-import type { RadioOption } from '../ui/PricingRadio.vue';
 import type { ProductSwitchOption } from '../ui/ProductSwitch.vue';
 import type { SwatchesOption } from '../ui/Swatches.vue';
 import type { LargeTextInputOption, TextInputOption } from '../ui/TextInput.vue';
-import type { UploadWithCommentOption } from '../ui/UploadWithComment.vue';
 import type { VariantSelectorOption } from '../ui/VariantSelector.vue';
 import { z } from 'zod';
 
@@ -45,19 +44,23 @@ export interface ProductVariantToAddToCart {
   price: number;
   title: string;
 }
-
+export interface UploadFileWithTextInputOption {
+  type: 'upload_file_with_text_input';
+  fileUploader: FileUploaderOption;
+  largeTextInput: LargeTextInputOption;
+}
 export type ProductOption =
-  | RadioOption
   | SwatchesOption
   | ConditionOption
   | TextInputOption
   | LargeTextInputOption
-  | UploadWithCommentOption
   | ProductSwitchOption
   | CartTotalOption
   | PaymentButtonsOption
   | PaymentTrustsOption
-  | VariantSelectorOption;
+  | VariantSelectorOption
+  | FileUploaderOption
+  | UploadFileWithTextInputOption;
 
 export interface ProductOptionsSection {
   product: any;

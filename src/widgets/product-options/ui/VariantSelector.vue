@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { Swiper as SwiperType } from 'swiper';
+import type { OptionBase } from '../model/types';
 import { useMediaQuery } from '@vueuse/core';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { computed, nextTick, onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useOptionsStore } from '../model/OptionsStore';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -18,7 +19,7 @@ interface VariantSelectorVariant {
   description: string;
   inventory_quantity: number;
 }
-export interface VariantSelectorOption {
+export interface VariantSelectorOption extends OptionBase {
   type: 'variant_selector';
   badges: string[];
   show_inventory_quantity: boolean;
@@ -42,6 +43,9 @@ onMounted(() => {
       title: variant.title,
       quantity: 1,
     });
+    if ('cart_label' in props.option) {
+      optionsStore.mainProduct.customParams[props.option.cart_label] = variant.title;
+    }
   }
 });
 
@@ -60,7 +64,7 @@ function getPlanDetails(title: string) {
     'Calligrapher': {
       name: 'Basic',
       concepts: '1x',
-      revisions: 'unlimited revisions',
+      revisions: 'unique signature logo concepts',
       features: [
         '2 revision rounds',
         'Standard delivery (5–7 days)',
@@ -72,7 +76,7 @@ function getPlanDetails(title: string) {
     'Top Level Calligrapher': {
       name: 'Most Popular',
       concepts: '3x',
-      revisions: 'unlimited revisions',
+      revisions: 'unique signature logo concepts',
       features: [
         '5 revision rounds',
         'Faster delivery (3–5 days)',
@@ -85,7 +89,7 @@ function getPlanDetails(title: string) {
     'Head Calligrapher': {
       name: 'Premium',
       concepts: '5x',
-      revisions: 'unlimited revisions',
+      revisions: 'unique signature logo concepts',
       features: [
         'Unlimited revisions ',
         'Faster delivery (24–48 hours)',
@@ -130,7 +134,7 @@ const planFeatures = computed(() =>
       :initial-slide="props.option.default_variant_index ?? 1"
       centered-slides
       :breakpoints="{ 320: { slidesPerView: 1.1 }, 768: { slidesPerView: 1.1 }, 1024: { slidesPerView: 3 } }"
-      class="pricing-swiper !pb-16 lg:!pb-0"
+      class="pricing-swiper md:!pb-0 !pb-16"
       @swiper="swiperRef = $event"
     >
       <SwiperSlide
@@ -138,14 +142,15 @@ const planFeatures = computed(() =>
         :key="variant.id"
         class="h-auto"
       >
-        <label class="block h-full cursor-pointer" @click="selectVariant(variant)">
+        <label class="block h-full cursor-pointer pt-1" @click="selectVariant(variant)">
           <div
-            class="relative h-full flex flex-col justify-between gap-5 lg:gap-10 rounded-[40px] border-2 p-5 transition-all duration-300  "
+            class="relative h-full flex flex-col justify-between gap-5 lg:gap-10 rounded-[40px] border-2 p-5 transition-all duration-300"
             :class="{
-              'border-blue-500 bg-blue-500/5': optionsStore.mainProduct.variantId === variant.id,
-              'border-white bg-transparent': optionsStore.mainProduct.variantId !== variant.id,
+              'border-white': optionsStore.mainProduct.variantId !== variant.id,
+              'border-blue-600 ring-4 ring-blue-600': optionsStore.mainProduct.variantId === variant.id,
             }"
           >
+
             <span
               v-if="getPlanDetails(variant.title).isPopular"
               class="absolute top-5 right-5 bg-orange-500 text-white px-3 py-1 leading-normal rounded-md text-sm font-semibold"

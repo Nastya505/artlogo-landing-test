@@ -46,4 +46,15 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
   ],
+  // plugins: [
+  //   '~/plugins/artlogo-ui-kit.ts'
+  // ],
+  // vite: {
+  //   optimizeDeps: {
+  //     include: ['@artlogo-co/ui-kit'],
+  //   },
+  // },
+  // build: {
+  //   transpile: ['@artlogo-co/ui-kit'],
+  // },
 })

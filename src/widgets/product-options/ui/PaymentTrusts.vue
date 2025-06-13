@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { OptionBase } from '../model/types';
 
-export interface PaymentTrustsOption extends OptionBase {
+export interface PaymentTrustsOption {
   type: 'payment_trusts';
 }
 
@@ -36,7 +36,7 @@ const securityIcons: Record<'mobile' | 'desktop', { src: string; alt: string }[]
     <div class="flex flex-wrap justify-center gap-4">
       <img
         v-for="icon in paymentMethodIcons" :key="icon.src"
-        :data-src="icon.src" :alt="icon.alt"
+        :src="icon.src" :alt="icon.alt"
         class="lazyload w-12"
         width="40" height="20"
       >
@@ -45,16 +45,16 @@ const securityIcons: Record<'mobile' | 'desktop', { src: string; alt: string }[]
     <div class="hidden md:flex justify-center gap-8">
       <img
         v-for="icon in securityIcons.desktop" :key="icon.src"
-        :data-src="icon.src" :alt="icon.alt"
-        class="lazyload h-14 w-auto max-w-[50%]"
+        :src="icon.src" :alt="icon.alt"
+        class="lazyload h-14 w-auto max-w-[50%] filter brightness-0 invert"
         width="100" height="100"
       >
     </div>
     <div class="flex md:hidden justify-center gap-8">
       <img
         v-for="icon in securityIcons.mobile" :key="icon.src"
-        :data-src="icon.src" :alt="icon.alt"
-        class="lazyload h-24 w-auto max-w-[50%]"
+        :src="icon.src" :alt="icon.alt"
+        class="lazyload h-14 w-auto max-w-[50%] filter brightness-0 invert"
         width="100" height="100"
       >
     </div>

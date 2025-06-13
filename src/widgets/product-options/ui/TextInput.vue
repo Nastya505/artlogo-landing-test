@@ -56,7 +56,7 @@ const inputAttrs = computed<InputHTMLAttributes | TextareaHTMLAttributes | undef
       v-model="optionsStore.mainProduct.customParams[option.cart_label]"
       :value="optionsStore.mainProduct.customParams[option.cart_label] === 'undefined' ? '' : optionsStore.mainProduct.customParams[option.cart_label]"
       :placeholder="option.placeholder_text"
-      class="w-full p-5 bg-white/20 border border-white rounded-lg text-white placeholder-white/50 focus:border-blue-500 focus:outline-none text-base md:text-lg transition-colors duration-300" :class="[
+      class="w-full p-5 bg-white/20 border border-white rounded-lg text-white placeholder-white/50 focus:border-blue-600 focus:outline-none text-base md:text-lg transition-colors duration-300" :class="[
         {
           'resize-none overflow-y-auto min-h-72 text-base lg:!text-3xl': option.type === 'large_text_input',
         },

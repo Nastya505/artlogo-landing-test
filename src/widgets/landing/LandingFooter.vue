@@ -83,7 +83,7 @@ async function handleNewsletterSubmit() {
               v-model="newsletterForm.email"
               type="email"
               placeholder="Enter your Email"
-              class="flex-1 w-full md:w-auto p-5 bg-white/20 text-white border border-solid border-white focus:border-blue-500 focus:outline-none rounded-lg md:rounded-l-lg md:rounded-r-none placeholder-white/50  text-base"
+              class="flex-1 w-full md:w-auto p-5 bg-white/20 text-white border border-solid border-white focus:border-blue-600 focus:outline-none rounded-lg md:rounded-l-lg md:rounded-r-none placeholder-white/50  text-base"
               :disabled="newsletterForm.isSubmitting"
             >
             <button

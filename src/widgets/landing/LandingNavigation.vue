@@ -50,7 +50,6 @@ onMounted(() => {
 
     <div class="relative w-full mx-auto px-3 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center">
-        <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8">
           <a
             v-for="link in navigationLinks"

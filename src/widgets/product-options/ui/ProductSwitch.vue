@@ -36,7 +36,7 @@ const optionsStore = useOptionsStore();
             <template #reference>
               <button
                 type="button"
-                class="bg-transparent border-none text-blue-500 text-sm font-normal underline underline-offset-4 decoration-2 transition-colors duration-300 hover:text-blue-200 focus:text-blue-100 p-0 m-0 cursor-pointer"
+                class="bg-transparent border-none text-blue-600 text-sm font-normal underline underline-offset-4 decoration-2 transition-colors duration-300 hover:text-blue-200 focus:text-blue-100 p-0 m-0 cursor-pointer"
               >
                 More Info
               </button>

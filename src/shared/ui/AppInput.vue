@@ -23,7 +23,7 @@ defineEmits<{
       type="text"
       :placeholder="placeholder"
       :required="required"
-      class="w-full p-5 bg-white/20 border border-white rounded-lg text-white placeholder-white/50 focus:border-blue-500 focus:outline-none text-base md:text-lg transition-colors duration-300"
+      class="w-full p-5 bg-white/20 border border-white rounded-lg text-white placeholder-white/50 focus:border-blue-600 focus:outline-none text-base md:text-lg transition-colors duration-300"
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     >
   </div>

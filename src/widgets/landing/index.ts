@@ -9,7 +9,6 @@ import LandingReviews from './LandingReviews.vue';
 import LandingSteps from './LandingSteps.vue';
 import LandingSwiper from './LandingSwiper.vue';
 import ProgressSteps from './ProgressSteps.vue';
-import SwiperPricing from './SwiperPricing.vue';
 
 export {
   LandingCTA,
@@ -23,5 +22,4 @@ export {
   LandingSteps,
   LandingSwiper,
   ProgressSteps,
-  SwiperPricing,
 };

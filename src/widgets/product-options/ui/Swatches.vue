@@ -76,6 +76,10 @@ const selectedValues = computed(() => {
   const raw = optionsStore.mainProduct.customParams[props.option.cart_label] || '';
   return raw.split(',').map(s => s.trim());
 });
+
+const isShowMoreButton = computed(() => {
+  return optionsToShowNumber.value < props.option.options.length;
+});
 </script>
 
 <template>
@@ -87,7 +91,8 @@ const selectedValues = computed(() => {
       <label
         v-for="sw_option in optionsToShow"
         :key="sw_option.value"
-        class="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)] aspect-square rounded-lg overflow-hidden cursor-pointer relative transition-all duration-300"
+        :class="selectedValues.includes(sw_option.value) ? ' border-[6px] border-blue-600 ' : ''"
+        class="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)] aspect-square overflow-hidden rounded-3xl  cursor-pointer relative transition-all duration-100 hover:shadow-[0px_0px_26.88px_0px_#0277FF,0px_0px_15.36px_0px_#0277FF,0px_0px_8.96px_0px_#0277FF,0px_0px_4.48px_0px_#0277FF,0px_0px_1.28px_0px_#0277FF,0px_0px_0.64px_0px_#0277FF]"
       >
         <input
           :type="option.max_selections === null || option.max_selections > 1 ? 'checkbox' : 'radio'"
@@ -97,7 +102,7 @@ const selectedValues = computed(() => {
         <img
           :src="sw_option.background"
           :alt="sw_option.value"
-          class="w-full h-full object-cover object-center rounded-3xl"
+          class="w-full h-full object-cover object-center"
         >
         <div v-if="sw_option.is_popular" class="flex items-top gap-2 absolute top-5 right-5 bg-orange-500/10 border border-orange-500 text-orange-500 text-base sm:text-xl font-normal px-3 py-1 rounded-xl z-10">
           <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,12 +110,10 @@ const selectedValues = computed(() => {
           </svg>
           <span>Most popular</span>
         </div>
-        <div v-if="selectedValues.includes(sw_option.value)" class="absolute top-5 left-5 w-20 h-20  rounded-full flex items-center justify-center shadow-lg">
-          <img src="https://cdn.shopify.com/s/files/1/0594/4639/5086/files/check.svg" alt="Selected" class="w-full h-full">
-        </div>
       </label>
     </div>
     <AppButton
+      v-if="isShowMoreButton"
       class="mt-16"
       :text="option.paginate_button_text"
       variant="primary"

@@ -23,11 +23,11 @@ const cartItemsNumber = computed(() => {
       <div class="flex items-center justify-end flex-col gap-2">
         <div v-if="optionsStore.cartTotal.compare_at_price > optionsStore.cartTotal.price" class="flex font-semibold  items-center text-gray-400">
           <span class="mr-2 text-sm lg:text-base">USD</span>
-          <span class="line-through text-base lg:text-2xl">${{ optionsStore.cartTotal.compare_at_price / 100 }}</span>
+          <span class="line-through text-base lg:text-2xl">${{ (optionsStore.cartTotal.compare_at_price / 100).toFixed(2) }}</span>
         </div>
         <div class="flex items-center">
           <span class="text-white mr-2 text-base font-bold">USD</span>
-          <span class="text-white text-2xl lg:text-4xl font-semibold">${{ optionsStore.cartTotal.price / 100 }}</span>
+          <span class="text-white text-2xl lg:text-4xl font-semibold">${{ (optionsStore.cartTotal.price / 100).toFixed(2) }}</span>
         </div>
       </div>
     </div>

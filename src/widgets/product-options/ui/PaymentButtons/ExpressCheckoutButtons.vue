@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { api } from '@/shared/api';
 
 import * as Sentry from '@sentry/browser';
@@ -170,4 +170,4 @@ watch(
     }"
     @click="$emit('click')"
   />
-</template>
+</template> -->

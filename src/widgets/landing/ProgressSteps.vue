@@ -28,7 +28,6 @@ interface Props {
           'w-full justify-center': index === steps.length - 1 && steps.length === 3,
         }"
       >
-        <!-- Step circle and content -->
         <div class="flex items-center">
           <div
             class="flex-shrink-0 border border-white border-solid rounded-full flex items-center justify-center mr-2 md:mr-4 w-5 h-5 md:w-12 md:h-12 md:border-4"
@@ -40,7 +39,6 @@ interface Props {
           </span>
         </div>
 
-        <!-- Arrow - показываем только если это не последний элемент -->
         <div
           v-if="index < steps.length - 1"
           class="ml-2 md:ml-12"
@@ -54,7 +52,6 @@ interface Props {
       </div>
     </div>
 
-    <!-- Синяя линия с учетом padding -->
-    <div class="h-[6px] rounded-full md:rounded-none bg-blue-500 mt-4" />
+    <div class="h-[6px] rounded-full md:rounded-none bg-blue-600 mt-4" />
   </div>
 </template>

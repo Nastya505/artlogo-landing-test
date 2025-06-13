@@ -55,6 +55,7 @@ function handleInitialized() {
       :is-loading="isLoading"
       @initialized="handleInitialized"
     />
+
     <LandingFooter
       :is-show-subscribe="false"
       :is-show-payment-methods="false"

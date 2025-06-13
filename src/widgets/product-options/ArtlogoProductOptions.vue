@@ -41,6 +41,6 @@ onMounted(() => {
 
 <template>
   <div>
-    <ProductOptionsApp  v-if="isInitialized" />
+    <ProductOptionsApp v-if="isInitialized" />
   </div>
 </template>

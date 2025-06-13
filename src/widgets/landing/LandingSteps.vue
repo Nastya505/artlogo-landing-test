@@ -130,7 +130,7 @@ function handleButtonClick() {
           class="w-10 h-auto lg:w-20"
           loading="lazy"
         >
-        <div class="text-xl md:text-5xl text-white font-bold">
+        <div class="text-xl md:text-5xl text-white font-bold pr-0 md:pr-24">
           It's that simple!
         </div>
       </div>

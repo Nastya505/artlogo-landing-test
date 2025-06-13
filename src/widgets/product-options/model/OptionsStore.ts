@@ -35,7 +35,12 @@ export const useOptionsStore = defineStore('productOptions', () => {
       const section = getProductData();
 
       section.optionsSet.forEach((option: ProductOption) => {
-        if (!option.cart_label && option.type !== 'condition' && option.type !== 'cart_total') {
+        if (
+          'cart_label' in option
+          && !option.cart_label
+          && option.type !== 'condition'
+          && option.type !== 'cart_total'
+        ) {
           // add cart_label if it's not set
           // will be used for technical purposes
           option.cart_label = randomString();
@@ -82,22 +87,27 @@ export const useOptionsStore = defineStore('productOptions', () => {
   const errors = ref<Record<string, string>>({});
 
   function validateOption(option: ProductOption): boolean {
-    if (option.is_required && !mainProduct.value.customParams[option.cart_label]) {
-      errors.value[option.cart_label] = 'This field is required';
-      return false;
+    if ('is_required' in option && 'cart_label' in option && option.is_required) {
+      const value = mainProduct.value.customParams[option.cart_label];
+      if (value === undefined || value === null || value === '') {
+        errors.value[option.cart_label] = 'This field is required';
+        return false;
+      }
     }
 
-    if (option.type === 'text_input' && option.validation_type) {
+    if (option.type === 'text_input' && 'validation_type' in option && option.validation_type) {
       const schema = validationSchemas[option.validation_type];
-      const { error } = schema.safeParse(mainProduct.value.customParams[option.cart_label]);
+      const { error } = schema.safeParse(mainProduct.value.customParams['cart_label' in option ? option.cart_label : '']);
       const issue = error?.issues[0];
-      if (issue) {
+      if (issue && 'cart_label' in option) {
         errors.value[option.cart_label] = issue.message;
         return false;
       }
     }
 
-    delete errors.value[option.cart_label];
+    if ('cart_label' in option) {
+      delete errors.value[option.cart_label];
+    }
     return true;
   }
 
@@ -133,7 +143,7 @@ export const useOptionsStore = defineStore('productOptions', () => {
       Object.keys(currentProductCustomParams).forEach((key) => {
         // remove empty values & properties without cart labels
         const isEmptyValue = !currentProductCustomParams[key];
-        const shouldSendValueToCart = sectionData.value!.optionsSet.some((option: ProductOption) => option.cart_label === key && option.send_value_to_cart);
+        const shouldSendValueToCart = sectionData.value!.optionsSet.some((option: ProductOption) => 'cart_label' in option && 'send_value_to_cart' in option && option.cart_label === key && option.send_value_to_cart);
         if (isEmptyValue || !shouldSendValueToCart) {
           delete currentProductCustomParams[key];
         }

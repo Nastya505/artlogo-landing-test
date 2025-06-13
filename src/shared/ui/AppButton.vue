@@ -61,7 +61,7 @@ function handleClick(event: Event) {
     :disabled="disabled || loading"
     @click="handleClick"
   >
-    <div v-if="loading" class="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />
+    <div v-if="loading" class="rounded-full h-4 w-4  border-2 border-white border-t-transparent mr-2" />
     <span>{{ text }}</span>
   </button>
 
